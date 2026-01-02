@@ -17,3 +17,6 @@ def get_action_links():
             'https://www.thalgo-usa.com/face/_/psa/956-face/20-action/139-day-care/',
             'https://www.thalgo-usa.com/face/_/psa/956-face/20-action/106-night-care/',
             'https://www.thalgo-usa.com/face/_/psa/956-face/20-action/188-lip-balm/']
+
+def get_murad_collection_links():
+    return ['https://www.murad.com/collections/cleansers-toners']
