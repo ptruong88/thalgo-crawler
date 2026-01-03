@@ -19,4 +19,12 @@ def get_action_links():
             'https://www.thalgo-usa.com/face/_/psa/956-face/20-action/188-lip-balm/']
 
 def get_murad_collection_links():
-    return ['https://www.murad.com/collections/cleansers-toners']
+    return ['https://www.murad.com/collections/cleansers-toners',
+            'https://www.murad.com/collections/exfoliators',
+            'https://www.murad.com/collections/serums-treatments',
+            'https://www.murad.com/collections/moisturizers',
+            'https://www.murad.com/collections/masks-peels',
+            'https://www.murad.com/collections/eyes',
+            'https://www.murad.com/collections/spf',
+            'https://www.murad.com/collections/regimens-kits',
+            'https://www.murad.com/collections/supplements']
