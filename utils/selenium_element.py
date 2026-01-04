@@ -26,12 +26,17 @@ def get_element_text(container_div, orders, isElementHidden = False):
         temp_div = get_element(container_div, orders)        
         return temp_div.get_attribute("textContent") if isElementHidden else temp_div.text
     except Exception as e:
-        print(f"get_element_text: {e}")
+        print(f"Error when get_element_text: {e}")
         return 0
     
 
 def get_element_attribute(container_div, orders, attribute_name):
-    return get_element(container_div, orders).get_attribute(attribute_name)
+    try:
+        return get_element(container_div, orders).get_attribute(attribute_name)
+    except Exception as e:
+        print(f"Error when get_element_attribute: {e}")
+        return 0
+    
 
 def get_elements(container_div, orders):    
     temp_element = get_element(container_div, orders[:-1])

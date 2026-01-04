@@ -31,7 +31,7 @@ def main():
                 print(f'item_json: {item_json}')
                 item_data.append(item_json)
                 
-            # save_json_list_as_csv(f'murad_{link_parts[-1]}_{collection_page.get_title()}.csv', item_data)
+            save_json_list_as_csv(f'murad_{link_parts[-1]}_{collection_page.get_title()}.csv', item_data)
         except Exception as e:
             print(f"Error processing collection link: {e}, url: {collection_link}")  
 
