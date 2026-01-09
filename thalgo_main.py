@@ -2,7 +2,8 @@ from selenium import webdriver
 from thalgo.item_page import ItemPage
 from thalgo.action_page import ActionPage
 from services.config_service import get_thalgo_action_links
-from utils.file_util import save_json_list_as_csv
+from utils.file_util import save_json_list_as_csv, merge_csv_files
+import pandas as pd
 
 def main():
     action_links = get_thalgo_action_links()
@@ -42,6 +43,33 @@ def processing_item_link(driver, item_link):
     item_page = ItemPage(driver)
     item_json = item_page.get_info()
     return item_json
+
+def proccess_for_shopify_import(df):
+    df["Handle"] = (
+        "thalgo-" + df["category"].str.strip() + "-" + df["title"].str.strip()
+            ).str.lower() \
+            .str.replace(r"[^a-z0-9]", "-", regex=True) \
+            .str.replace(r"\-+", "-", regex=True)
+
+    print(df[["category", "title", "Handle"]].head())
+
     
 if __name__ == "__main__":
-    main()
+    # main()
+    crawled_data_file_name = "csv/crawled_data.csv"
+    merge_csv_files("csv", crawled_data_file_name)
+    df = pd.read_csv(crawled_data_file_name, encoding="utf-8-sig")
+    # print(df.head())
+    proccess_for_shopify_import(df)
+    df.to_csv("csv/updated_crawled_data.csv", encoding="utf-8-sig")
+
+
+    # exported_df = pd.read_csv("csv/products_export.csv", encoding="utf-8-sig")
+    # combined_df = df.merge(exported_df, on="Handle", how="outer")
+
+    # print(combined_df['Title'])
+    # priority = ["Handle", "Title", "title", "category"]
+    # remaining = [c for c in combined_df.columns if c not in priority]
+    # reorder_combined_df = combined_df[priority + remaining]
+
+    # reorder_combined_df.to_csv("csv/combined.csv", encoding="utf-8-sig")
